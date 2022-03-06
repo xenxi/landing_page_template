@@ -14,15 +14,7 @@ class MainMenu extends HookWidget {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: () {
-          if (isOpen.value) {
-            controller.reverse();
-          } else {
-            controller.forward();
-          }
-
-          isOpen.value = !isOpen.value;
-        },
+        onTap: () => _toggleMenu(controller, isOpen: isOpen),
         child: Container(
           width: 120,
           height: 40,
@@ -33,6 +25,17 @@ class MainMenu extends HookWidget {
         ),
       ),
     );
+  }
+
+  void _toggleMenu(AnimationController controller,
+      {required ValueNotifier<bool> isOpen}) {
+    if (isOpen.value) {
+      controller.reverse();
+    } else {
+      controller.forward();
+    }
+
+    isOpen.value = !isOpen.value;
   }
 }
 
