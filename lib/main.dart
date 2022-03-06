@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:landing_page_template/presentation/custom_theme.dart';
 
 import 'package:landing_page_template/presentation/routes/fluro_router_generator.dart';
 
@@ -15,6 +16,7 @@ class LandingApp extends StatelessWidget {
     return MaterialApp(
         title: 'Landing Page Template',
         initialRoute: '/home',
+        theme: CustomTheme.dark,
         onGenerateRoute: _router.generateRoute);
   }
 }
