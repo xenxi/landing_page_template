@@ -9,6 +9,9 @@ class MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text);
+    return Text(
+      text,
+      style: const TextStyle(color: Colors.white),
+    );
   }
 }
