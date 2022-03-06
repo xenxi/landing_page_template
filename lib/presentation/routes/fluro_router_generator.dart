@@ -12,15 +12,15 @@ class FluroRouterGenerator {
   void _configureRoutes() {
     _router.define(
       '/:page',
-      handler: Handler(
-        handlerFunc: (context, params) => const HomePage(),
-      ),
+      handler: _homeHandler(),
     );
 
-    _router.notFoundHandler = Handler(
-      handlerFunc: (context, params) => const HomePage(),
-    );
+    _router.notFoundHandler = _homeHandler();
   }
+
+  Handler _homeHandler() => Handler(
+        handlerFunc: (context, params) => const HomePage(),
+      );
 
   Route<dynamic>? generateRoute(RouteSettings settings) =>
       _router.generator(settings);
