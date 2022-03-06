@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:landing_page_template/presentation/home_page.dart';
 
-void main() => runApp(const LandingApp());
+import 'package:landing_page_template/presentation/routes/fluro_router_generator.dart';
+
+void main() => runApp(LandingApp());
 
 class LandingApp extends StatelessWidget {
-  const LandingApp({Key? key}) : super(key: key);
+  final FluroRouterGenerator _router;
+  LandingApp({Key? key})
+      : _router = FluroRouterGenerator(),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Landing Page Template',
-      home: HomePage(),
-    );
+    return MaterialApp(
+        title: 'Landing Page Template',
+        initialRoute: '/home',
+        onGenerateRoute: _router.generateRoute);
   }
 }
