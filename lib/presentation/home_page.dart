@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          const HomeView(),
+          const _Body(),
           Positioned(
               top: 20,
               right: 20,
@@ -21,5 +21,16 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const HomeView();
   }
 }
