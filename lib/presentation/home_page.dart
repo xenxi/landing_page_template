@@ -6,6 +6,8 @@ import 'package:landing_page_template/presentation/views/home_view.dart';
 import 'package:landing_page_template/presentation/views/portfolio_view.dart';
 import 'package:landing_page_template/presentation/views/skills_view.dart';
 
+import 'main_menu.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -13,16 +15,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        children: [
-          const _Body(),
-          Positioned(
-              top: 20,
-              right: 20,
-              child: Container(
-                width: 100,
-                height: 50,
-                color: Colors.black,
-              ))
+        children: const [
+          _Body(),
+          Positioned(top: 20, right: 20, child: MainMenu())
         ],
       ),
     );
