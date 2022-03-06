@@ -19,14 +19,18 @@ class MainMenu extends HookWidget {
       child: GestureDetector(
         onTap: () => _toggleMenu(controller, isOpen: isOpen),
         child: Container(
+          clipBehavior: Clip.hardEdge,
           width: 120,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
           decoration: BoxDecoration(
               color: Colors.black, borderRadius: BorderRadius.circular(6)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              MenuTitle(controller: controller),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                child: MenuTitle(controller: controller),
+              ),
               if (isOpen.value) ...[
                 const MenuItem(text: 'Home'),
                 const MenuItem(text: 'About'),
