@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:landing_page_template/presentation/views/home_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,9 +9,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            color: Colors.red,
-          ),
+          const HomeView(),
           Positioned(
               top: 20,
               right: 20,
