@@ -7,6 +7,9 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.red,
+      child: const Center(
+        child: Text('Home'),
+      ),
     );
   }
 }
