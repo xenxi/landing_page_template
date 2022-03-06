@@ -20,7 +20,7 @@ class MainMenu extends HookWidget {
         onTap: () => _toggleMenu(controller, isOpen: isOpen),
         child: Container(
           width: 120,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
           decoration: BoxDecoration(
               color: Colors.black, borderRadius: BorderRadius.circular(6)),
           child: Column(
