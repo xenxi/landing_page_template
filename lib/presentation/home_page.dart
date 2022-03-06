@@ -6,7 +6,7 @@ import 'package:landing_page_template/presentation/views/home_view.dart';
 import 'package:landing_page_template/presentation/views/portfolio_view.dart';
 import 'package:landing_page_template/presentation/views/skills_view.dart';
 
-import 'main_menu.dart';
+import 'shared/main_menu/main_menu.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
