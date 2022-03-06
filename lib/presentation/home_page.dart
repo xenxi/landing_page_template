@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:landing_page_template/presentation/views/about_view.dart';
+import 'package:landing_page_template/presentation/views/blog_view.dart';
 import 'package:landing_page_template/presentation/views/contact_view.dart';
 import 'package:landing_page_template/presentation/views/home_view.dart';
 import 'package:landing_page_template/presentation/views/portfolio_view.dart';
@@ -41,7 +42,8 @@ class _Body extends StatelessWidget {
         AboutView(),
         SkillsView(),
         PortfolioView(),
-        ContactView()
+        ContactView(),
+        BlogView()
       ],
     );
   }
