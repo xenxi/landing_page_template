@@ -1,1 +1,1 @@
-# flutter_demo_landing_page
+# Landing page template
