@@ -31,7 +31,7 @@ class MenuItem extends HookWidget {
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
           child: Text(
             text,
-            style: GoogleFonts.cinzel(color: Colors.white),
+            style: GoogleFonts.aBeeZee(color: Colors.white),
             textAlign: TextAlign.center,
           ),
         ),
