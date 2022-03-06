@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:landing_page_template/presentation/views/about_view.dart';
 import 'package:landing_page_template/presentation/views/blog_view.dart';
 import 'package:landing_page_template/presentation/views/contact_view.dart';
@@ -6,6 +8,7 @@ import 'package:landing_page_template/presentation/views/home_view.dart';
 import 'package:landing_page_template/presentation/views/portfolio_view.dart';
 import 'package:landing_page_template/presentation/views/skills_view.dart';
 
+import '../application/landing_bloc.dart';
 import 'shared/main_menu/main_menu.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,34 +16,46 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: const [
-          _Body(),
-          Positioned(top: 20, right: 20, child: MainMenu())
-        ],
+    return BlocProvider(
+      create: (context) => LandingBloc(),
+      child: Scaffold(
+        body: Stack(
+          children: [
+            _Body(),
+            const Positioned(top: 20, right: 20, child: MainMenu())
+          ],
+        ),
       ),
     );
   }
 }
 
 class _Body extends StatelessWidget {
-  const _Body({
+  final PageController controller = PageController();
+  _Body({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      scrollDirection: Axis.vertical,
-      children: const [
-        HomeView(),
-        AboutView(),
-        SkillsView(),
-        PortfolioView(),
-        ContactView(),
-        BlogView()
-      ],
+    return BlocListener<LandingBloc, LandingState>(
+      listener: (context, state) {
+        controller.animateToPage(state.viewIndex,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut);
+      },
+      child: PageView(
+        controller: controller,
+        scrollDirection: Axis.vertical,
+        children: const [
+          HomeView(),
+          AboutView(),
+          SkillsView(),
+          PortfolioView(),
+          ContactView(),
+          BlogView()
+        ],
+      ),
     );
   }
 }

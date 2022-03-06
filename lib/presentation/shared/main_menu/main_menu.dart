@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:landing_page_template/presentation/shared/main_menu/menu_item.dart';
 
+import '../../../application/landing_bloc.dart';
 import 'menu_title.dart';
 
 class MainMenu extends HookWidget {
@@ -31,7 +33,7 @@ class MainMenu extends HookWidget {
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 child: MenuTitle(controller: controller),
               ),
-              if (isOpen.value) ..._buildItems()
+              if (isOpen.value) ..._buildItems(context)
             ],
           ),
         ),
@@ -39,15 +41,31 @@ class MainMenu extends HookWidget {
     );
   }
 
-  List<Widget> _buildItems() => [
-        const MenuItem(
-          text: 'Home',
-        ),
-        const MenuItem(text: 'About', delay: Duration(milliseconds: 100)),
-        const MenuItem(text: 'Skills', delay: Duration(milliseconds: 150)),
-        const MenuItem(text: 'Portfolio', delay: Duration(milliseconds: 200)),
-        const MenuItem(text: 'Contact', delay: Duration(milliseconds: 250)),
-        const MenuItem(text: 'Blog', delay: Duration(milliseconds: 300))
+  List<Widget> _buildItems(BuildContext context) => [
+        MenuItem(
+            text: 'Home',
+            delay: const Duration(milliseconds: 100),
+            onTap: () => _navigateTo(context, index: 0)),
+        MenuItem(
+            text: 'About',
+            delay: const Duration(milliseconds: 100),
+            onTap: () => _navigateTo(context, index: 1)),
+        MenuItem(
+            text: 'Skills',
+            delay: const Duration(milliseconds: 150),
+            onTap: () => _navigateTo(context, index: 2)),
+        MenuItem(
+            text: 'Portfolio',
+            delay: const Duration(milliseconds: 200),
+            onTap: () => _navigateTo(context, index: 3)),
+        MenuItem(
+            text: 'Contact',
+            delay: const Duration(milliseconds: 250),
+            onTap: () => _navigateTo(context, index: 4)),
+        MenuItem(
+            text: 'Blog',
+            delay: const Duration(milliseconds: 300),
+            onTap: () => _navigateTo(context, index: 5))
       ];
 
   void _toggleMenu(AnimationController controller,
@@ -60,4 +78,7 @@ class MainMenu extends HookWidget {
 
     isOpen.value = !isOpen.value;
   }
+
+  void _navigateTo(context, {required int index}) =>
+      BlocProvider.of<LandingBloc>(context).add(PageChanged(index));
 }
