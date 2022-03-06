@@ -31,6 +31,8 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HomeView();
+    return PageView(
+      children: [const HomeView()],
+    );
   }
 }
