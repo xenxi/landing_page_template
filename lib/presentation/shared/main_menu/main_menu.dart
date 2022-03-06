@@ -31,26 +31,24 @@ class MainMenu extends HookWidget {
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 child: MenuTitle(controller: controller),
               ),
-              if (isOpen.value) ...[
-                const MenuItem(
-                  text: 'Home',
-                ),
-                const MenuItem(
-                    text: 'About', delay: Duration(milliseconds: 100)),
-                const MenuItem(
-                    text: 'Skills', delay: Duration(milliseconds: 150)),
-                const MenuItem(
-                    text: 'Portfolio', delay: Duration(milliseconds: 200)),
-                const MenuItem(
-                    text: 'Contact', delay: Duration(milliseconds: 250)),
-                const MenuItem(text: 'Blog', delay: Duration(milliseconds: 300))
-              ]
+              if (isOpen.value) ..._buildItems()
             ],
           ),
         ),
       ),
     );
   }
+
+  List<Widget> _buildItems() => [
+        const MenuItem(
+          text: 'Home',
+        ),
+        const MenuItem(text: 'About', delay: Duration(milliseconds: 100)),
+        const MenuItem(text: 'Skills', delay: Duration(milliseconds: 150)),
+        const MenuItem(text: 'Portfolio', delay: Duration(milliseconds: 200)),
+        const MenuItem(text: 'Contact', delay: Duration(milliseconds: 250)),
+        const MenuItem(text: 'Blog', delay: Duration(milliseconds: 300))
+      ];
 
   void _toggleMenu(AnimationController controller,
       {required ValueNotifier<bool> isOpen}) {
