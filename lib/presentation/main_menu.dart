@@ -29,19 +29,32 @@ class MainMenu extends HookWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
               color: Colors.black, borderRadius: BorderRadius.circular(6)),
-          child: Row(
-            children: [
-              const Text(
-                'Menú',
-                style: TextStyle(color: Colors.white, fontSize: 18),
-              ),
-              const Spacer(),
-              AnimatedIcon(
-                  icon: AnimatedIcons.menu_close, progress: controller),
-            ],
-          ),
+          child: MenuTitle(controller: controller),
         ),
       ),
+    );
+  }
+}
+
+class MenuTitle extends StatelessWidget {
+  const MenuTitle({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final AnimationController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Text(
+          'Menú',
+          style: TextStyle(color: Colors.white, fontSize: 18),
+        ),
+        const Spacer(),
+        AnimatedIcon(icon: AnimatedIcons.menu_close, progress: controller),
+      ],
     );
   }
 }
