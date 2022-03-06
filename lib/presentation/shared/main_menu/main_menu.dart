@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:landing_page_template/presentation/shared/main_menu/menu_item.dart';
 
 import 'menu_title.dart';
 
@@ -27,6 +28,14 @@ class MainMenu extends HookWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MenuTitle(controller: controller),
+              if (isOpen.value) ...[
+                const MenuItem(text: 'Home'),
+                const MenuItem(text: 'About'),
+                const MenuItem(text: 'Skills'),
+                const MenuItem(text: 'Portfolio'),
+                const MenuItem(text: 'Contact'),
+                const MenuItem(text: 'Blog')
+              ]
             ],
           ),
         ),
