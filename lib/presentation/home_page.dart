@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:landing_page_template/presentation/views/about_view.dart';
+import 'package:landing_page_template/presentation/views/contact_view.dart';
 import 'package:landing_page_template/presentation/views/home_view.dart';
 import 'package:landing_page_template/presentation/views/portfolio_view.dart';
 import 'package:landing_page_template/presentation/views/skills_view.dart';
@@ -35,7 +36,13 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView(
-      children: const [HomeView(), AboutView(), SkillsView(), PortfolioView()],
+      children: const [
+        HomeView(),
+        AboutView(),
+        SkillsView(),
+        PortfolioView(),
+        ContactView()
+      ],
     );
   }
 }
