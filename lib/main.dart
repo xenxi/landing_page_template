@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:landing_page_template/presentation/home_page.dart';
 
 void main() => runApp(const LandingApp());
 
@@ -7,9 +8,9 @@ class LandingApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Landing Page Template',
-      home: Container(),
+      home: HomePage(),
     );
   }
 }
