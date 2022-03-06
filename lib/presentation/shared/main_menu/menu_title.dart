@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class MenuTitle extends StatelessWidget {
+class MenuTitle extends HookWidget {
   const MenuTitle({
     Key? key,
     required this.controller,

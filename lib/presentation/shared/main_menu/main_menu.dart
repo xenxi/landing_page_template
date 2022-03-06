@@ -13,7 +13,7 @@ class MainMenu extends HookWidget {
   Widget build(BuildContext context) {
     final isOpen = useState(false);
     final controller =
-        useAnimationController(duration: const Duration(milliseconds: 400));
+        useAnimationController(duration: const Duration(milliseconds: 300));
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -32,12 +32,18 @@ class MainMenu extends HookWidget {
                 child: MenuTitle(controller: controller),
               ),
               if (isOpen.value) ...[
-                const MenuItem(text: 'Home'),
-                const MenuItem(text: 'About'),
-                const MenuItem(text: 'Skills'),
-                const MenuItem(text: 'Portfolio'),
-                const MenuItem(text: 'Contact'),
-                const MenuItem(text: 'Blog')
+                const MenuItem(
+                  text: 'Home',
+                ),
+                const MenuItem(
+                    text: 'About', delay: Duration(milliseconds: 100)),
+                const MenuItem(
+                    text: 'Skills', delay: Duration(milliseconds: 150)),
+                const MenuItem(
+                    text: 'Portfolio', delay: Duration(milliseconds: 200)),
+                const MenuItem(
+                    text: 'Contact', delay: Duration(milliseconds: 250)),
+                const MenuItem(text: 'Blog', delay: Duration(milliseconds: 300))
               ]
             ],
           ),
