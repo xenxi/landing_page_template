@@ -37,6 +37,7 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView(
+      scrollDirection: Axis.vertical,
       children: const [
         HomeView(),
         AboutView(),

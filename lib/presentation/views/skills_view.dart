@@ -6,7 +6,7 @@ class SkillsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
+      color: Colors.blueAccent,
       padding: const EdgeInsets.all(12),
       alignment: Alignment.center,
       child: FittedBox(
