@@ -19,7 +19,10 @@ class FluroRouterGenerator {
   }
 
   Handler _homeHandler() => Handler(
-        handlerFunc: (context, params) => const HomePage(),
+        handlerFunc: (context, params) {
+          final page = params['page']?.first ?? '';
+          return HomePage(page: page);
+        },
       );
 
   Route<dynamic>? generateRoute(RouteSettings settings) =>
