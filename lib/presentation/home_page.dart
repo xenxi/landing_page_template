@@ -11,6 +11,7 @@ import 'package:landing_page_template/presentation/views/skills_view.dart';
 
 import '../application/landing_bloc.dart';
 import 'shared/main_menu/main_menu.dart';
+import 'package:universal_html/html.dart' as html;
 
 class HomePage extends StatelessWidget {
   final String page;
@@ -62,7 +63,8 @@ class _Body extends HookWidget {
       if (index != currentIndex.value) {
         final page = _pages[index];
         currentIndex.value = index;
-        print(page);
+        html.window.history.pushState(null, 'none', '#/${page}');
+        html.document.title = _pages[index];
       }
     });
 
