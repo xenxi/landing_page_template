@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:landing_page_template/presentation/shared/main_menu/menu_item.dart';
 
 import '../../../application/landing_bloc.dart';
+import '../values/menu_data.dart';
 import 'menu_title.dart';
 
 class MainMenu extends HookWidget {
@@ -41,32 +42,8 @@ class MainMenu extends HookWidget {
     );
   }
 
-  List<Widget> _buildItems(BuildContext context) => [
-        MenuItem(
-            text: 'Home',
-            delay: const Duration(milliseconds: 100),
-            onTap: () => _navigateTo(context, index: 0)),
-        MenuItem(
-            text: 'About',
-            delay: const Duration(milliseconds: 100),
-            onTap: () => _navigateTo(context, index: 1)),
-        MenuItem(
-            text: 'Skills',
-            delay: const Duration(milliseconds: 150),
-            onTap: () => _navigateTo(context, index: 2)),
-        MenuItem(
-            text: 'Portfolio',
-            delay: const Duration(milliseconds: 200),
-            onTap: () => _navigateTo(context, index: 3)),
-        MenuItem(
-            text: 'Contact',
-            delay: const Duration(milliseconds: 250),
-            onTap: () => _navigateTo(context, index: 4)),
-        MenuItem(
-            text: 'Blog',
-            delay: const Duration(milliseconds: 300),
-            onTap: () => _navigateTo(context, index: 5))
-      ];
+  Iterable<Widget> _buildItems(BuildContext context) => MenuData.links(context)
+      .map((menuData) => MenuItem(text: menuData.text, onTap: menuData.onTap));
 
   void _toggleMenu(AnimationController controller,
       {required ValueNotifier<bool> isOpen}) {
