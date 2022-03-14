@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-
-import 'package:landing_page_template/presentation/views/about_view.dart';
-import 'package:landing_page_template/presentation/views/blog_view.dart';
-import 'package:landing_page_template/presentation/views/contact_view.dart';
-import 'package:landing_page_template/presentation/views/home_view.dart';
-import 'package:landing_page_template/presentation/views/portfolio_view.dart';
-import 'package:landing_page_template/presentation/views/skills_view.dart';
+import 'package:universal_html/html.dart' as html;
+import 'package:landing_page_template/presentation/views/view_data.dart';
 
 import '../application/landing_bloc.dart';
 import 'shared/main_menu/main_menu.dart';
-import 'package:universal_html/html.dart' as html;
+import 'shared/values/home_view_data.dart';
 
 class HomePage extends StatelessWidget {
   final String page;
@@ -29,6 +24,7 @@ class HomePage extends StatelessWidget {
           children: [
             _Body(
               initialPage: page,
+              views: HomeViewData.views,
             ),
             const Positioned(top: 20, right: 20, child: MainMenu())
           ],
@@ -39,18 +35,12 @@ class HomePage extends StatelessWidget {
 }
 
 class _Body extends HookWidget {
-  static const List<String> _pages = [
-    'home',
-    'about',
-    'skills',
-    'portfolio',
-    'contact',
-    'blog',
-  ];
+  final List<ViewData> views;
   final PageController controller;
   _Body({
     Key? key,
     required String initialPage,
+    required this.views,
   })  : controller = _createFromInitialPage(initialPage),
         super(key: key);
 
@@ -61,10 +51,10 @@ class _Body extends HookWidget {
       final index = (controller.page ?? 0).round();
 
       if (index != currentIndex.value) {
-        final page = _pages[index];
+        final view = views[index];
         currentIndex.value = index;
-        html.window.history.pushState(null, 'none', '#/${page}');
-        html.document.title = _pages[index];
+        html.window.history.pushState(null, 'none', '#/${view.title}');
+        html.document.title = view.title;
       }
     });
 
@@ -77,23 +67,17 @@ class _Body extends HookWidget {
       child: PageView(
         controller: controller,
         scrollDirection: Axis.vertical,
-        children: const [
-          HomeView(),
-          AboutView(),
-          SkillsView(),
-          PortfolioView(),
-          ContactView(),
-          BlogView()
-        ],
+        children: views.map((e) => e.view).toList(),
       ),
     );
   }
 
   static int _getIndex(String page) {
-    final index = _pages.indexOf(page);
+    final initialView = HomeViewData.views.firstWhere(
+        (element) => element.title == page,
+        orElse: () => HomeViewData.views.first);
 
-    if (index < 0) return 0;
-    return index;
+    return HomeViewData.views.indexOf(initialView);
   }
 
   static PageController _createFromInitialPage(String initialPage) {

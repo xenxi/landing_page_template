@@ -15,7 +15,7 @@ class LandingApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Landing Page Template',
-        initialRoute: '/home',
+        initialRoute: '/',
         theme: CustomTheme.dark,
         onGenerateRoute: _router.generateRoute);
   }
