@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:universal_html/html.dart' as html;
 import 'package:landing_page_template/presentation/views/view_data.dart';
 
 import '../application/landing_bloc.dart';
+import 'components/landing_scroller_builder.dart';
 import 'shared/main_menu/main_menu.dart';
 import 'shared/values/home_view_data.dart';
 
@@ -36,28 +36,21 @@ class HomePage extends StatelessWidget {
 
 class _Body extends HookWidget {
   final List<ViewData> views;
-  final PageController controller;
-  _Body({
+  final String initialPage;
+  const _Body({
     Key? key,
-    required String initialPage,
+    required this.initialPage,
     required this.views,
-  })  : controller = _createFromInitialPage(initialPage),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final currentIndex = useState(controller.initialPage);
-    controller.addListener(() {
-      final index = (controller.page ?? 0).round();
-
-      if (index != currentIndex.value) {
-        final view = views[index];
-        currentIndex.value = index;
-        html.window.history.pushState(null, 'none', '#/${view.title}');
-        html.document.title = view.title;
-      }
-    });
-
+    final currentIndex = useState(0);
+    final controllerPage = HomePageController.fromInitialPage(
+        inital: initialPage,
+        views: views,
+        onPageChanged: (page) => currentIndex.value = page);
+    final controller = controllerPage.controller;
     return BlocListener<LandingBloc, LandingState>(
       listener: (context, state) {
         controller.animateToPage(state.viewIndex,
