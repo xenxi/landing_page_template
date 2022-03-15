@@ -64,17 +64,4 @@ class _Body extends HookWidget {
       ),
     );
   }
-
-  static int _getIndex(String page) {
-    final initialView = HomeViewData.views.firstWhere(
-        (element) => element.title == page,
-        orElse: () => HomeViewData.views.first);
-
-    return HomeViewData.views.indexOf(initialView);
-  }
-
-  static PageController _createFromInitialPage(String initialPage) {
-    final pageIndex = _getIndex(initialPage);
-    return PageController(initialPage: pageIndex);
-  }
 }
