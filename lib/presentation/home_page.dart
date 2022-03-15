@@ -45,7 +45,7 @@ class _Body extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentIndex = useState(0);
+    final currentIndex = useState(initialPage);
     final controller = fromInitialPage(
         inital: initialPage,
         views: views,

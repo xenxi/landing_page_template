@@ -9,8 +9,8 @@ int _getIndex(String page, List<ViewData> views) {
   return views.indexOf(initialView);
 }
 
-typedef OnPageChanged = void Function(int page);
-HomePageController fromInitialPage(
+typedef OnPageChanged = void Function(String page);
+PageController fromInitialPage(
     {required String inital,
     required List<ViewData> views,
     required OnPageChanged onPageChanged}) {
@@ -43,7 +43,7 @@ class HomePageController {
         _currentIndex = index;
         html.window.history.pushState(null, 'none', '#/${view.title}');
         html.document.title = view.title;
-        onPageChanged(index);
+        onPageChanged(view.title);
       }
     });
   }
