@@ -46,11 +46,11 @@ class _Body extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final currentIndex = useState(0);
-    final controllerPage = HomePageController.fromInitialPage(
+    final controller = fromInitialPage(
         inital: initialPage,
         views: views,
         onPageChanged: (page) => currentIndex.value = page);
-    final controller = controllerPage.controller;
+
     return BlocListener<LandingBloc, LandingState>(
       listener: (context, state) {
         controller.animateToPage(state.viewIndex,

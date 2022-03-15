@@ -10,6 +10,20 @@ int _getIndex(String page, List<ViewData> views) {
 }
 
 typedef OnPageChanged = void Function(int page);
+HomePageController fromInitialPage(
+    {required String inital,
+    required List<ViewData> views,
+    required OnPageChanged onPageChanged}) {
+  final pageIndex = _getIndex(inital, views);
+  final controller = PageController(initialPage: pageIndex);
+  final homeController = HomePageController._(
+      controller: controller,
+      currentIndex: pageIndex,
+      views: views,
+      onPageChanged: onPageChanged);
+
+  return homeController.controller;
+}
 
 class HomePageController {
   final PageController controller;
